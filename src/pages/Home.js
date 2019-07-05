@@ -55,7 +55,7 @@ export default class Home extends Component{
           {
             this.state.isLoading ?
               <View><Spinner color='red'/></View>
-            :
+            : 
             <List>{postList}</List>
           }
         </Content>
