@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { View, FlatList, Text } from 'react-native';
 import axios from 'axios';
-import { ListItem, Body, CheckBox, Spinner, Fab, Icon, Container, Header, Right, Button } from 'native-base';
+import { ListItem, Body, CheckBox, Spinner, Fab, Icon, Container, Header, Right, Button, Content } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
 
@@ -27,7 +27,6 @@ export default class HomeFlatList extends Component{
     loadDataFromServer = () =>{
         let page = this.state.page;
         this.setState({loading:true});
-
             axios.get(baseUrl+'/todos/'+page+'/10')
             .then(response => {
                 this.setState({
@@ -58,10 +57,12 @@ export default class HomeFlatList extends Component{
                 <Header>
                     <Body><Text style={{color:'white', fontWeight:'500'}}>Todo List</Text></Body>
                     <Right>
-                        <Button transparent><Icon name='search' style={{color:'white', fontWeight:'500'}}/></Button>
+                        <Button transparent onPress={()=>{
+                            Actions.search()
+                        }}><Icon name='search' style={{color:'white', fontWeight:'500'}}/></Button>
                     </Right>
                 </Header>
-                <View style={{flex:1}}>
+                   <View style={{flex:1}}>
                     <FlatList
                     data={this.state.data}
                     renderItem={({item}) => (
@@ -74,12 +75,13 @@ export default class HomeFlatList extends Component{
                     )}
                     keyExtractor={item => item.id.toString()}
                     onEndReached={this.handleLoadMore}
-                    onEndReachedThreshold={0}
+                    onEndReachedThreshold={1}
                     />
                     <Fab position='bottomRight' style={{backgroundColor:'blue'}} onPress={()=>{Actions.input();}}>
                         <Icon name='add'/>
                     </Fab>
-                </View>
+                    </View>
+                
             </Container>
         );
     }

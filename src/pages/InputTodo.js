@@ -25,7 +25,6 @@ export default class InputTodo extends Component{
         if(this.state.todoItem.trim()=== ""){
             return;
         }
-
         axios.post(baseUrl+'/todos',{
             'title':this.state.todoItem
         })

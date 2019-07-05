@@ -3,6 +3,7 @@ import { Router, Scene } from 'react-native-router-flux';
 import HomeFlatList from './src/pages/HomeFlatList';
 import Detail from './src/pages/Detail';
 import InputTodo from './src/pages/InputTodo';
+import Search from './src/pages/Search';
 
 
 export default class App extends Component{
@@ -13,6 +14,7 @@ export default class App extends Component{
           <Scene key="home" component={HomeFlatList} initial={true}/>
           <Scene key="detail" component={Detail} />
           <Scene key="input" component={InputTodo} />
+          <Scene key="search" component={Search} />
         </Scene>
       </Router>
     );
